@@ -8,7 +8,7 @@ import ErrorPage from './views/ErrorPage'
 import { action as deleteProductAction } from './components/ProductDetail'
 
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter([ 
     {
         path: '/',
         element: <Layout />,
