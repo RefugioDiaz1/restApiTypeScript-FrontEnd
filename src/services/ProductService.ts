@@ -1,4 +1,4 @@
-import { number, safeParse } from "valibot";
+import { safeParse } from "valibot";
 import { DraftProductSchema, ProductSchema, ProductsSchema, type Product } from "../types";
 import axios from "axios";
 import { toBoolean } from "../utils";
@@ -98,7 +98,7 @@ export async function deleteProductsById(id : Product['id']) {
     try {
 
         const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
-        const {data } =await axios.delete(url)
+        await axios.delete(url)
         // const result = safeParse(ProductSchema, data.data)
         // if (result.success) {
         //     return result.output
@@ -115,7 +115,7 @@ export async function patchProductsById(id : Product['id']) {
     try {
         
         const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
-        const {data } =await axios.patch(url)
+        await axios.patch(url)
         // const result = safeParse(ProductSchema, data.data)
         // if (result.success) {
         //     return result.output
