@@ -40,16 +40,18 @@ export async function addProduct(data : ProductData){
 export async function getProducts() {
     try {
         const url = `${import.meta.env.VITE_API_URL}/api/products`
-        const {data } =await axios.get(url)
+        const { data } = await axios.get(url)
         const result = safeParse(ProductsSchema, data.data)
         if (result.success) {
             return result.output
-        }else{
-            throw new Error('Hubo un Error')
+        } else {
+            // schema mismatch – throw so caller can know
+            throw new Error('Datos inválidos recibidos del servidor')
         }
-
     } catch (error) {
-        console.log(error)
+        console.error('getProducts failed', error)
+        // rethrow so calling loader or component can handle error
+        throw error
     }
 }
 

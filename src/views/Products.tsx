@@ -5,9 +5,14 @@ import type { Products } from "../types";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
-  const products = await getProducts();
-
-  return products;
+  try {
+    const products = await getProducts();
+    // always return an array (could be empty) to avoid undefined
+    return products ?? [];
+  } catch (error) {
+    // let React Router show its error boundary or custom errorElement
+    throw error;
+  }
 }
 
 export async function action({request}:ActionFunctionArgs) {
@@ -19,7 +24,7 @@ export async function action({request}:ActionFunctionArgs) {
 }
 
 export default function Products() {
-  const products = useLoaderData() as Products
+  const products = (useLoaderData() as Products) ?? []
 
   return (
     <>
@@ -44,11 +49,19 @@ export default function Products() {
           </thead>
           <tbody>
 
-            {products.map(product => (
-              <ProductDetail 
-              key={product.id}
-              product={product} />
-            ))}
+            {products.length > 0 ? (
+              products.map(product => (
+                <ProductDetail 
+                  key={product.id}
+                  product={product} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="p-4 text-center text-gray-500">
+                  No hay productos para mostrar.
+                </td>
+              </tr>
+            )}
 
           </tbody>
         </table>
