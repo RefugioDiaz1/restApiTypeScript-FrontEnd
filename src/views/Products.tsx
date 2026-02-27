@@ -45,19 +45,11 @@ export default function Products() {
           </thead>
           <tbody>
 
-            {products.length > 0 ? (
-              products.map(product => (
-                <ProductDetail 
-                  key={product.id}
-                  product={product} />
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} className="p-4 text-center text-gray-500">
-                  No hay productos para mostrar.
-                </td>
-              </tr>
-            )}
+            {products.map(product => (
+              <ProductDetail 
+              key={product.id}
+              product={product} />
+            ))}
 
           </tbody>
         </table>
