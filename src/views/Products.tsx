@@ -5,14 +5,10 @@ import type { Products } from "../types";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
-  try {
+  
     const products = await getProducts();
-    // always return an array (could be empty) to avoid undefined
-    return products ?? [];
-  } catch (error) {
-    // let React Router show its error boundary or custom errorElement
-    throw error;
-  }
+    return products 
+    
 }
 
 export async function action({request}:ActionFunctionArgs) {

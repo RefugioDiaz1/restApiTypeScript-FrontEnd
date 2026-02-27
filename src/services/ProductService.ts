@@ -49,9 +49,7 @@ export async function getProducts() {
             throw new Error('Datos inválidos recibidos del servidor')
         }
     } catch (error) {
-        console.error('getProducts failed', error)
-        // rethrow so calling loader or component can handle error
-        throw error
+       console.log(error)
     }
 }
 
