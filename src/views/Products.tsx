@@ -8,7 +8,7 @@ export async function loader() {
   
     const products = await getProducts();
     return products 
-    
+
 }
 
 export async function action({request}:ActionFunctionArgs) {
@@ -20,7 +20,7 @@ export async function action({request}:ActionFunctionArgs) {
 }
 
 export default function Products() {
-  const products = (useLoaderData() as Products) ?? []
+  const products = useLoaderData() as Products
 
   return (
     <>

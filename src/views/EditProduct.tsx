@@ -42,7 +42,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
   if (error.length) {
     return error;
   }
-
+  
   if (params.id !== undefined) {
     await updateProductsById(data, +params.id);
     return redirect("/");
